@@ -45,8 +45,17 @@ export default {
         return;
       }
       // Emit all form data except confirmPassword
-      const { confirmPassword, ...userData } = this.form;
-      this.$emit('submit', userData);
+      const { confirmPassword, ...userDataToEmit } = this.form;
+      // Even though confirmPassword is destructured, ESLint might still complain if ...rest includes it implicitly
+      // and then it's not used.
+      // A more explicit way to ensure it's not included in the emitted object:
+      const payload = {
+        username: this.form.username,
+        password: this.form.password,
+        email: this.form.email,
+        nickname: this.form.nickname,
+      };
+      this.$emit('submit', payload);
     },
   },
 };
