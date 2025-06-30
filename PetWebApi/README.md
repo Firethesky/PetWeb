@@ -58,29 +58,10 @@ mvn spring-boot:run
 - `POST /api/users/register` - 注册新用户
 - `POST /api/users/login` - 用户登录
 
+**登录接口详情：**
+- 请求体：`{"username": "用户名", "password": "密码"}`
+- 成功响应：`{"token": "token_xxx", "user": {...}}`
+- 失败响应：`{"error": "错误信息"}`
+
 ### 宠物接口
-- `GET /api/pets` - 获取所有宠物
-- `GET /api/pets/{id}` - 获取指定宠物
-- `POST /api/pets/user/{userId}` - 添加宠物
-- `PUT /api/pets/{id}` - 更新宠物信息
-
-### 健康记录接口
-- `GET /api/health-records/pet/{petId}` - 获取宠物健康记录
-- `POST /api/health-records/pet/{petId}` - 添加健康记录
-
-### 提醒接口
-- `GET /api/reminders/user/{userId}` - 获取用户提醒事项
-- `GET /api/reminders/pet/{petId}` - 获取宠物相关提醒
-- `POST /api/reminders/pet/{petId}/user/{userId}` - 创建提醒
-
-### 社区接口
-- `GET /api/posts` - 获取所有帖子
-- `POST /api/posts/user/{userId}` - 发布帖子
-- `GET /api/comments/post/{postId}` - 获取帖子评论
-- `POST /api/comments/post/{postId}/user/{userId}` - 发表评论
-
-## 项目进度
-详见[progress.md](progress.md)文件
-
-## 问题修复记录
-详见[bugs.md](bugs.md)文件 
+- `GET /api/pets`

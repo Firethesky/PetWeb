@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/users")
@@ -60,9 +61,20 @@ public class UserController {
         
         Optional<User> userOptional = userService.login(username, password);
         if (userOptional.isPresent()) {
-            return ResponseEntity.ok(userOptional.get());
+            User user = userOptional.get();
+            
+            // 生成模拟token
+            String token = "token_" + UUID.randomUUID().toString().replace("-", "");
+            
+            // 创建包含token和用户信息的响应
+            Map<String, Object> response = new HashMap<>();
+            response.put("token", token);
+            response.put("user", user);
+            
+            return ResponseEntity.ok(response);
         } else {
             Map<String, String> response = new HashMap<>();
+            response.put("token", "");
             response.put("error", "用户名或密码错误");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
         }
